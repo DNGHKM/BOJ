@@ -1,18 +1,16 @@
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         String[] str = new String[n];
         boolean[] result = new boolean[n];
+        char[][] a = new char[n][];
         int count =0;
         for (int i = 0, j=0; i < n; i++, j++) {
             str[i] = sc.next();
             result[i] = true;
         }
-        char[][] a = new char[n][];
         for (int i = 0; i <n; i++) {
             a[i]=str[i].toCharArray();
             for (int j = 0; j <a[i].length-1; j++) {
@@ -29,13 +27,12 @@ public class Main {
                             continue;
                         }
                         result[i] = false;
-                        break;
                     }
                 }
             }
         }
-        for (int i = 0; i < result.length; i++) {
-            if(result[i]==true){
+        for (boolean b : result) {
+            if (b) {
                 count++;
             }
         }
