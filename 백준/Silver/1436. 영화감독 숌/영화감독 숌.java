@@ -1,16 +1,19 @@
-import java.util.Scanner;
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int j =1;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine());
+        int j =665;
         int count = 0;
         while(count!=n) {
             j++;
             if(Integer.toString(j).contains("666")) {
-               count++;
+                count++;
             }
         }
-        System.out.println(j);
+        bw.write(Integer.toString(j));
+        bw.close();
     }
 }
