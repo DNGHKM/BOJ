@@ -12,19 +12,19 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         StringBuffer sb = new StringBuffer();
-        for (int i = 0; i <n; i++) {
-            setN.add(br.readLine());
-        }
-        for (int i = 0; i <m; i++) {
-            setM.add(br.readLine());
+        for (int i = 0; i < n + m; i++) {
+            if (i < n) {
+                setN.add(br.readLine());
+            } else {
+                setM.add(br.readLine());
+            }
         }
         setN.retainAll(setM);
         ArrayList<String> result = new ArrayList<>(setN);
         sb.append(result.size()).append("\n");
         Collections.sort(result);
-        Iterator<String> it = result.iterator();
-        while(it.hasNext()){
-            sb.append(it.next()).append("\n");
+        for (String s : result) {
+            sb.append(s).append("\n");
         }
         System.out.println(sb);
     }
