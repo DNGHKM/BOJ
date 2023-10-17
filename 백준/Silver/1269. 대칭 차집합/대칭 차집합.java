@@ -9,22 +9,21 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        HashSet<Integer> hsN = new HashSet<>();
-        HashSet<Integer> hsM = new HashSet<>();
-        HashSet<Integer> hsUnion = new HashSet<>();
+        HashSet<Integer> hs = new HashSet<>();
 
         StringTokenizer st2 = new StringTokenizer(br.readLine());
         for (int i = 0; i <n; i++) {
-            hsN.add(Integer.parseInt(st2.nextToken()));
+            hs.add(Integer.parseInt(st2.nextToken()));
         }
         StringTokenizer st3 = new StringTokenizer(br.readLine());
         for (int i = 0; i <m; i++) {
-            hsM.add(Integer.parseInt(st3.nextToken()));
+            int num = Integer.parseInt(st3.nextToken());
+            if(hs.contains(num)){
+                hs.remove(num);
+            } else{
+                hs.add(num);
+            }
         }
-        hsUnion.addAll(hsN); //합집합 만들기 1
-        hsUnion.addAll(hsM); //합집합 만들기 1
-        hsN.retainAll(hsM); //hsN을 hsN과 hsMd의 교집합으로 만듬
-        hsUnion.removeAll(hsN); //hsUnion을 합집합 - 교집합 연산
-        System.out.println(hsUnion.size()); //대칭차집합 원소갯수 출력
+        System.out.println(hs.size());
     }
 }
