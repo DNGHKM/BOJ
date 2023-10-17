@@ -10,8 +10,7 @@ public class Main {
         HashSet<String> hs = new HashSet<>();
         for (int i = 0; i <=input.length(); i++) {
             for (int j = i; j <=input.length(); j++) {
-                String str = input.substring(i,j);
-                hs.add(str);
+                hs.add(input.substring(i,j));
             }
         }
         System.out.println(hs.size()-1);
