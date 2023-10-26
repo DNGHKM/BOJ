@@ -29,10 +29,10 @@ public class Main {
                     pop();
                     break;
                 case "size":
-                    sizeStack();
+                    sizeQueue();
                     break;
                 case "empty":
-                    emptyStack();
+                    emptyQueue();
                     break;
                 case "front":
                     front();
@@ -56,10 +56,10 @@ public class Main {
             bw.write(tmp+"\n");
         }
     }
-    private static void sizeStack() throws IOException{
+    private static void sizeQueue() throws IOException{
         bw.write(pollIndex-pushIndex+"\n");
     }
-    private static void emptyStack() throws IOException{
+    private static void emptyQueue() throws IOException{
         if(pushIndex==pollIndex){
             bw.write(1+"\n");
         }else{
