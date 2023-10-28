@@ -9,7 +9,7 @@ public class Main {
         String bomb = br.readLine();
         for (int i = input.length()-1; i >= 0; i--) {
             stack.push(input.charAt(i));
-            if(stack.size()>=bomb.length()){
+            if(stack.peek()==bomb.charAt(0)&&stack.size()>=bomb.length()){
                 boolean check=true;
                 int tmp = 0;
                 for (int j = stack.size()-1; j >=stack.size()-bomb.length(); j--) {
