@@ -12,16 +12,14 @@ public class Main{
             int h = Integer.parseInt(st.nextToken());
             list.add(new Person(w,h));
         }
-        Iterator<Person> it = list.iterator();
-        while(it.hasNext()){
+        for (Person man : list) {
             int count = 0;
-            Person man = it.next();
-            for (int i = 0; i <n; i++) {
-                if(list.get(i).height>man.height&&list.get(i).weight>man.weight){
+            for (int i = 0; i < n; i++) {
+                if (list.get(i).height > man.height && list.get(i).weight > man.weight) {
                     count++;
                 }
             }
-            man.rank = count+1;
+            man.rank = count + 1;
         }
 
         for (Person person : list) {
