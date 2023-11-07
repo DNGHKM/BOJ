@@ -1,7 +1,8 @@
 import java.io.*;
-        import java.util.*;
+import java.util.*;
 
 public class Main {
+    static BufferedWriter bw;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -28,14 +29,17 @@ public class Main {
             });
         }
         boolean[] visited = new boolean[n + 1];
+        bw = new BufferedWriter(new OutputStreamWriter(System.out));
         DFS(list, visited, v);
+        bw.flush();
         System.out.println();
         visited = new boolean[n + 1];
         BFS(list, visited, v);
+        bw.flush();
     }
-    private static void DFS(ArrayList<ArrayList<Integer>> list, boolean[] visited, int v) {
-        System.out.print(v + " ");
+    private static void DFS(ArrayList<ArrayList<Integer>> list, boolean[] visited, int v) throws IOException {
         visited[v] = true;
+        bw.write(v+" ");
         for (int a : list.get(v)) {
             if (!visited[a]) {
                 DFS(list, visited, a);
@@ -43,13 +47,14 @@ public class Main {
             }
         }
     }
-    private static void BFS(ArrayList<ArrayList<Integer>> list, boolean[] visited, int v) {
+    private static void BFS(ArrayList<ArrayList<Integer>> list, boolean[] visited, int v) throws IOException {
+        bw = new BufferedWriter(new OutputStreamWriter(System.out));
         Queue<Integer> q = new LinkedList<>();
         q.add(v);
         visited[v] = true;
         while (!q.isEmpty()) {
             int tmp = q.poll();
-            System.out.print(tmp + " ");
+            bw.write(tmp+" ");
             for (int a : list.get(tmp)) {
                 if (!visited[a]) {
                     q.add(a);
