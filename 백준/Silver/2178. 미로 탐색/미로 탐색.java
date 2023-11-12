@@ -26,12 +26,14 @@ public class Main {
             point tmp = q.poll();
             visited[tmp.x][tmp.y] = true;
             for (int i = 0; i < 4; i++) {
-                if (visitedCheck(tmp.x + dx[i], tmp.y + dy[i]) && arr[tmp.x + dx[i]][tmp.y + dy[i]] == 1 && !visited[tmp.x + dx[i]][tmp.y + dy[i]]) {
-                    point next = new point(tmp.x + dx[i], tmp.y + dy[i]);
-                    q.add(next);
-                    count[next.x][next.y]=count[tmp.x][tmp.y]+1;
-                    visited[next.x][next.y] = true;
-                    if(next.x==n&&next.y==m){
+                int nextX = tmp.x + dx[i];
+                int nextY = tmp.y + dy[i];
+                if (rangeCheck(nextX, nextY) && arr[nextX][nextY] == 1 && !visited[nextX][nextY]) {
+                    point nextPoint = new point(nextX, nextY);
+                    q.add(nextPoint);
+                    count[nextPoint.x][nextPoint.y]=count[tmp.x][tmp.y]+1;
+                    visited[nextPoint.x][nextPoint.y] = true;
+                    if(nextPoint.x==n&&nextPoint.y==m){
                         break;
                     }
                 }
@@ -39,7 +41,7 @@ public class Main {
         }
         System.out.println(count[n][m]+1);
     }
-    private static boolean visitedCheck(int a, int b) {
+    private static boolean rangeCheck(int a, int b) {
         return 0 < a && a <= n && 0<=b && b <= m;
     }
 } class point {
