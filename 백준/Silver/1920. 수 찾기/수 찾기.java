@@ -1,32 +1,42 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuffer sb = new StringBuffer();
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
-        int[] arrN = new int[n];
+        int[] a = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i <n; i++) {
-            arrN[i] = Integer.parseInt(st.nextToken());
+            a[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(arrN);
+        Arrays.sort(a);
         int m = Integer.parseInt(br.readLine());
-        int[] arrM = new int[m];
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        st = new StringTokenizer(br.readLine());
         for (int i = 0; i <m; i++) {
-            arrM[i] = Integer.parseInt(st2.nextToken());
-        }
-        for (int i = 0; i < arrM.length; i++) {
-            if(Arrays.binarySearch(arrN, arrM[i])>=0){
-                sb.append(1+"\n");
+            int input = Integer.parseInt(st.nextToken());
+            int start = 0;
+            int fin = a.length-1;
+            int mid = (start+fin)/2;
+            while(start<=fin) {
+                if (input > a[mid]) {
+                    start = mid+1;
+                    mid = (start+fin)/2;
+                } else if(input<a[mid]){
+                    fin = mid-1;
+                    mid = (start+fin)/2;
+                } else{
+
+                    break;
+                }
+            }
+            if(a[mid]==input){
+                bw.write(1+"\n");
             }else{
-                sb.append(0+"\n");
+                bw.write(0+"\n");
             }
         }
-        System.out.println(sb);
-     }
+        bw.flush();
+    }
 }
