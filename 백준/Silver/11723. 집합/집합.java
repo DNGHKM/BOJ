@@ -6,7 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
-        HashSet<Integer> set = new HashSet<>();
+        int bitset = 0;
         for (int i = 0; i <n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             String input = st.nextToken();
@@ -15,28 +15,21 @@ public class Main {
                 num = Integer.parseInt(st.nextToken());
             }
             if(input.equals("add")){
-                set.add(num);
+                bitset |= (1<<num-1);
             }else if(input.equals("remove")){
-                set.remove(num);
+                bitset &= ~(1<<num-1);
             }else if(input.equals("check")){
-                if(set.contains(num)){
+                if((bitset&(1<<num-1))!=0){
                     bw.write(1+"\n");
                 }else{
                     bw.write(0+"\n");
                 }
             }else if(input.equals("toggle")){
-                if(set.contains(num)){
-                    set.remove(num);
-                }else{
-                    set.add(num);
-                }
+                bitset^=(1<<num-1);
             }else if(input.equals("all")){
-                set.clear();
-                for (int j = 1; j <=20; j++) {
-                    set.add(j);
-                }
+                bitset|=~0;
             }else{
-                set.clear();
+                bitset&=0;
             }
         }
         bw.flush();
