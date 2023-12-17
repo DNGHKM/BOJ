@@ -10,7 +10,7 @@ public class Main {
         long result = 0;
         for (int i = 0; i <a.length(); i++) {
             for (int j = 0; j <b.length(); j++) {
-                result+=Long.parseLong(String.valueOf(a.charAt(i)))*Long.parseLong(String.valueOf(b.charAt(j)));
+                result += (long) (a.charAt(i) - '0') * (b.charAt(j) - '0');
             }
         }
         System.out.println(result);
