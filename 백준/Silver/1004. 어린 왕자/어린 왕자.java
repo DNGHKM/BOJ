@@ -18,7 +18,7 @@ class Main {
                 int x = Integer.parseInt(st.nextToken());
                 int y = Integer.parseInt(st.nextToken());
                 int r = Integer.parseInt(st.nextToken());
-                if((dist(s, x, y)<r&&dist(f,x,y)<r)||(dist(s, x, y)>r&&dist(f,x,y)>r)){
+                if(free(s, f, x, y, r)){
                     count--;
                 }
             }
@@ -27,7 +27,9 @@ class Main {
         bw.flush();
     }
 
-    private static double dist(int[] arr, int x, int y) {
-        return Math.sqrt((x-arr[0])*(x-arr[0])+(y-arr[1])*(y-arr[1]));
+    private static boolean free(int[] arr, int[] arr2, int x, int y, int r) {
+        double ds = Math.sqrt((x-arr[0])*(x-arr[0])+(y-arr[1])*(y-arr[1]));
+        double df = Math.sqrt((x-arr2[0])*(x-arr2[0])+(y-arr2[1])*(y-arr2[1]));
+        return (ds < r && df < r) || (ds > r && df > r);
     }
 }
