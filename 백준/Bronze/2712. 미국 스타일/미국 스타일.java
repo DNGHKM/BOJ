@@ -24,9 +24,7 @@ public class Main {
                 result=num*3.7854;
                 unit="l";
             }
-            result*=10000;
-            double resultRound =(double)Math.round(result)/10000;
-            String s = String.format("%.4f",resultRound);
+            String s = String.format("%.4f",result);
             bw.write(s+" "+unit+"\n");
         }
         bw.flush();
