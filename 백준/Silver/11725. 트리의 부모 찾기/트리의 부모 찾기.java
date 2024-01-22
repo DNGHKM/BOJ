@@ -4,6 +4,7 @@ import java.util.*;
 class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         ArrayList<ArrayList<Integer>> list = new ArrayList<>();
         for (int i = 0; i <=n; i++) {
@@ -31,7 +32,8 @@ class Main {
             }
         }
         for (int i = 2; i <parent.length; i++) {
-            System.out.println(parent[i]);
+            bw.write(parent[i]+"\n");
         }
+        bw.flush();
     }
 }
