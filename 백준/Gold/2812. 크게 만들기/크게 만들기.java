@@ -23,6 +23,8 @@ public class Main {
         for (Integer i : stack) {
             if(sb.length()<length){
                 sb.append(i);
+            }else{
+                break;
             }
         }
         System.out.print(sb);
