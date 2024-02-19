@@ -6,20 +6,16 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        List<Stack<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            list.add(new Stack<>());
-        }
+        int[] arr = new int[4];
         for (int i = 0; i <n; i++) {
             int num = Integer.parseInt(st.nextToken());
             for (int j = 0; j < 4; j++) {
-                Stack<Integer> currentStack = list.get(j);
-                if(currentStack.isEmpty()){
-                    currentStack.push(num);
+                if(arr[j]==0){
+                    arr[j]=num;
                     break;
                 }else{
-                    if(currentStack.peek()<num) {
-                        currentStack.push(num);
+                    if(arr[j]<num) {
+                        arr[j]=num;
                         break;
                     }
                 }
