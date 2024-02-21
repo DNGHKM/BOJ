@@ -4,16 +4,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        String str = sc.next();
-        int cup = 1;
+        String s = sc.next();
+        int c = 1;
         int l = 0;
-        for (int i = 0; i <str.length(); i++) {
-            if(str.charAt(i)=='S') {
-                cup++;
-            }else{
-                l++;
-            }
+        for (int i = 0; i <s.length(); i++) {
+            if(s.charAt(i)=='S') c++;
+            else l++;
         }
-        System.out.print(Math.min(n,cup+(l/2)));
+        c+=l/2;
+        if(n<c) c=n;
+        System.out.print(c);
     }
 }
