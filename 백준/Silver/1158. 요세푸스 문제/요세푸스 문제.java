@@ -1,26 +1,31 @@
+import java.io.*;
 import java.util.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        StringBuilder sb = new StringBuilder();
-        sb.append("<");
-        Queue<Integer> q = new LinkedList<>();
-        int n = sc.nextInt();
-        int k = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        bw.write("<");
+        LinkedList<Integer> list = new LinkedList<>();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
         for (int i = 0; i < n; i++) {
-            q.add(i+1);
+            list.add(i + 1);
         }
-        while(!q.isEmpty()){
-            if(q.size()==1){
-                sb.append(q.poll());
+        int index = 0;
+        for (int i = 0; i <n; i++) {
+            if(list.size()==1){
+                bw.write(list.get(0)+"");
                 break;
             }
-            for (int i = 0; i < k-1; i++) {
-                q.add(q.poll());
+            index+=k-1;
+            while(index>=list.size()){
+                index-=list.size();
             }
-            sb.append(q.poll()).append(", ");
+            bw.write(list.get(index)+", ");
+            list.remove(index);
         }
-        sb.append(">");
-        System.out.print(sb);
+        bw.write(">");
+        bw.flush();
     }
 }
