@@ -6,11 +6,8 @@ public class Main {
         String s1 = sc.next();
         String s2 = sc.next();
         int[][] arr = new int[s1.length()+1][s2.length()+1];
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                if(i==0||j==0){
-                    continue;
-                }
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 1; j < arr[0].length; j++) {
                 if(s1.charAt(i-1)==s2.charAt(j-1)){
                     arr[i][j] = arr[i-1][j-1]+1;
                 }else{
