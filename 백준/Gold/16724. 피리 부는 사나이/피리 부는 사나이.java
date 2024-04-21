@@ -33,37 +33,21 @@ public class Main {
         System.out.print(ans);
     }
 
-    private static void dfs(int i, int j) {
-        Stack<int[]> stack = new Stack<>();
-        stack.add(new int[]{i, j});
-        int[] end = new int[2];
-        while (!stack.isEmpty()) {
-            int[] pop = stack.pop();
-            group[pop[0]][pop[1]] = num;
-            int[] next = new int[]{0, 0};
-            switch (arr[pop[0]][pop[1]]) {
-                case 'D':
-                    next = new int[]{pop[0] + 1, pop[1]};
-                    break;
-                case 'L':
-                    next = new int[]{pop[0], pop[1] - 1};
-                    break;
-                case 'R':
-                    next = new int[]{pop[0], pop[1] + 1};
-                    break;
-                case 'U':
-                    next = new int[]{pop[0] - 1, pop[1]};
-                    break;
-            }
-            if (group[next[0]][next[1]] == 0) {
-                stack.add(new int[]{next[0], next[1]});
-            }
-            if (stack.isEmpty()) {
-                end = new int[]{next[0], next[1]};
+    static void dfs(int i, int j) {
+        int[] cur = {i, j};
+        while (group[cur[0]][cur[1]] == 0) {
+            group[cur[0]][cur[1]] = num;
+            char c = arr[cur[0]][cur[1]];
+            if (c == 'D') {
+                cur[0] += 1;
+            } else if (c == 'U') {
+                cur[0] -= 1;
+            } else if (c == 'R') {
+                cur[1] += 1;
+            } else {
+                cur[1] -= 1;
             }
         }
-        if (group[end[0]][end[1]] == num) {
-            ans++;
-        }
+        if (group[cur[0]][cur[1]] == num) ans++;
     }
 }
