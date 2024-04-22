@@ -12,10 +12,6 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        if (Arrays.stream(arr).max().getAsInt() >= s) {
-            System.out.print(1);
-            return;
-        }
         int left = 0;
         int right = 0;
         long sum = arr[left];
