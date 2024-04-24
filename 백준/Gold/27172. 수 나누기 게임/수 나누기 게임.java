@@ -4,13 +4,16 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         int[] arr = new int[n];
+        int num = 0;
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
+            if (num < arr[i]) num = arr[i];
         }
-        int num = Arrays.stream(arr).max().getAsInt() + 1;
+        num++;
         int[] point = new int[num];
         boolean[] exist = new boolean[num];
         Arrays.stream(arr).forEach(i -> exist[i] = true);
@@ -22,6 +25,9 @@ public class Main {
                 }
             }
         }
-        Arrays.stream(arr).forEach(i -> System.out.print(point[i] + " "));
+        for (int i : arr) {
+            bw.write(point[i] + " ");
+        }
+        bw.flush();
     }
 }
