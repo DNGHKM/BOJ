@@ -22,7 +22,7 @@ public class Main {
             arrB[i] = Integer.parseInt(st.nextToken());
         }
 
-        Map<Long, Integer> mapA = new TreeMap<>();
+        Map<Long, Integer> mapA = new HashMap<>();
         for (int i = 0; i < arrA.length; i++) {
             long sum = 0;
             for (int j = i; j < arrA.length; j++) {
