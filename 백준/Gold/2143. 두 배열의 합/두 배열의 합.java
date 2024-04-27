@@ -8,17 +8,17 @@ public class Main {
         br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
         long count = 0;
-        
+
         int a = Integer.parseInt(br.readLine());
-        long[] sumA = makeSumArr(a);
-        
+        long[] arrA = makeArr(a);
+
         int b = Integer.parseInt(br.readLine());
-        long[] sumB = makeSumArr(b);
-        
-        Map<Long, Integer> mapA = fillMap(sumA);
-        Map<Long, Integer> mapB = fillMap(sumB);
-        
-        
+        long[] arrB = makeArr(b);
+
+        Map<Long, Integer> mapA = fillMap(arrA);
+        Map<Long, Integer> mapB = fillMap(arrB);
+
+
         for (Long i : mapA.keySet()) {
             long target = t - i;
             if (mapB.containsKey(target)) {
@@ -28,20 +28,21 @@ public class Main {
         System.out.print(count);
     }
 
-    static long[] makeSumArr(int size) throws IOException {
-        long[] sumArr = new long[size + 1];
+    static long[] makeArr(int size) throws IOException {
+        long[] arr = new long[size];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < sumArr.length; i++) {
-            sumArr[i] = sumArr[i - 1] + Long.parseLong(st.nextToken());
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Long.parseLong(st.nextToken());
         }
-        return sumArr;
+        return arr;
     }
 
-    static Map<Long, Integer> fillMap(long[] sumArr) {
+    static Map<Long, Integer> fillMap(long[] arr) {
         TreeMap<Long, Integer> map = new TreeMap<>();
-        for (int i = 0; i < sumArr.length - 1; i++) {
-            for (int j = i + 1; j < sumArr.length; j++) {
-                long num = sumArr[j] - sumArr[i];
+        for (int i = 0; i < arr.length; i++) {
+            long sum = 0;
+            for (int j = i; j < arr.length; j++) {
+                long num = sum += arr[j];
                 if (map.containsKey(num)) {
                     map.put(num, map.get(num) + 1);
                 } else {
