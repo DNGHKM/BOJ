@@ -1,11 +1,12 @@
+import java.io.*;
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        if(n==1){
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        if (n == 1) {
             System.out.println(0);
             return;
         }
@@ -34,7 +35,7 @@ public class Main {
                 continue;
             }
             right++;
-            if(primeList.size()<=right) {
+            if (primeList.size() <= right) {
                 break;
             }
             sum += primeList.get(right);
