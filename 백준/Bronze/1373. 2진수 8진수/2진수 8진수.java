@@ -1,4 +1,3 @@
-import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
@@ -16,11 +15,9 @@ public class Main {
                     break;
                 }
             }
-            sb.reverse();
-            sb2.append(Integer.toOctalString(Integer.valueOf(sb.toString(), 2)));
+            sb2.append(Integer.toOctalString(Integer.valueOf(sb.reverse().toString(), 2)));
             sb = new StringBuilder();
         }
-        sb2.reverse();
-        System.out.println(sb2);
+        System.out.println(sb2.reverse());
     }
 }
