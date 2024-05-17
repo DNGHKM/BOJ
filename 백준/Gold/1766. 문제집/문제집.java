@@ -8,7 +8,7 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n+1];
+        int[] arr = new int[n + 1];
         ArrayList<ArrayList<Integer>> list = new ArrayList<>();
         for (int i = 0; i < n + 1; i++) {
             list.add(new ArrayList<>());
@@ -20,22 +20,17 @@ public class Main {
             list.get(before).add(after);
             arr[after]++;
         }
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        int index = 1;
-        while (count < n) {
-            if (arr[index] == 0) {
-                bw.write(index+" ");
-                count++;
-                arr[index]--;
-                for (Integer next : list.get(index)) {
-                    arr[next]--;
-                }
-                index = 1;
-                continue;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] == 0) pq.add(i);
+        }
+        while (!pq.isEmpty()) {
+            Integer poll = pq.poll();
+            bw.write(poll + " ");
+            for (Integer next : list.get(poll)) {
+                arr[next]--;
+                if (arr[next] == 0) pq.add(next);
             }
-            index++;
-            if(index>n) index = 1;
         }
         bw.flush();
     }
