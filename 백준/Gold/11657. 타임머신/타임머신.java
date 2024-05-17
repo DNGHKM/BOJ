@@ -36,7 +36,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (int i = 2; i < dist.length; i++) {
             if (dist[i] != INF) {
-                sb.append(dist[i] + "\n");
+                sb.append(dist[i]).append("\n");
             } else {
                 sb.append(-1 + "\n");
             }
@@ -45,12 +45,8 @@ public class Main {
     }
 
     private static void bellman(long[] arr) {
-        ArrayList<Integer> notInf = new ArrayList<>();
-        for (int j = 1; j < arr.length; j++) {
-            if (arr[j] != INF) notInf.add(j);
-        }
         for (int[] ints : list) {
-            if (notInf.contains(ints[0])) {
+            if (arr[ints[0]] != INF) {
                 if (arr[ints[0]] + ints[2] < arr[ints[1]]) {
                     arr[ints[1]] = arr[ints[0]] + ints[2];
                 }
