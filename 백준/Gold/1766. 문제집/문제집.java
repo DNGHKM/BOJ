@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
@@ -24,7 +25,7 @@ public class Main {
         int index = 1;
         while (count < n) {
             if (arr[index] == 0) {
-                sb.append(index+" ");
+                bw.write(index+" ");
                 count++;
                 arr[index]--;
                 for (Integer next : list.get(index)) {
@@ -36,6 +37,6 @@ public class Main {
             index++;
             if(index>n) index = 1;
         }
-        System.out.println(sb);
+        bw.flush();
     }
 }
