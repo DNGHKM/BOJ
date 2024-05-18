@@ -20,20 +20,18 @@ public class Main {
             }
         });
         long len = 0;
-        int curLeft = list.get(0)[0];
-        int curRight = list.get(0)[1];
+        int curL = list.get(0)[0];
+        int curR = list.get(0)[1];
         for (int[] num : list) {
-            int a = num[0];
-            int b = num[1];
-            if (a > curRight) {
-                len += curRight - curLeft;
-                curLeft = a;
+            if (num[0] > curR) {
+                len += curR - curL;
+                curL = num[0];
             }
-            if (b > curRight) {
-                curRight = b;
+            if (num[1] > curR) {
+                curR = num[1];
             }
         }
-        len += curRight - curLeft;
-        System.out.println(len);
+        len += curR - curL;
+        System.out.print(len);
     }
 }
