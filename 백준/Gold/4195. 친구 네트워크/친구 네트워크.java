@@ -39,11 +39,17 @@ public class Main {
     private static int union(int a, int b) {
         int parentS1 = find(a);
         int parentS2 = find(b);
-        if (parentS1 != parentS2) {
+        if (parentS1 < parentS2) {
             parent[parentS2] = parentS1;
             count[parentS1] += count[parentS2];
+            return count[parentS1];
+        } else if(parentS2<parentS1){
+            parent[parentS1] = parentS2;
+            count[parentS2] += count[parentS1];
+            return count[parentS2];
+        }else{
+            return count[parentS1];
         }
-        return count[parentS1];
     }
 
     private static int find(int num) {
