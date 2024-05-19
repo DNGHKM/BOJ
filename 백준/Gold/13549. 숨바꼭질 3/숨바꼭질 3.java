@@ -18,9 +18,8 @@ public class Main {
             return;
         }
         time = new int[100_001];
-        for (int i = 0; i < time.length; i++) {
-            if (i != n) time[i] = INF;
-        }
+        Arrays.fill(time, INF);
+        time[n] = 0;
         dijk();
         System.out.println(time[k]);
     }
@@ -29,22 +28,20 @@ public class Main {
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
         pq.add(new int[]{n, 0});
         while (!pq.isEmpty()) {
-            int[] poll = pq.poll();
-            int cur = poll[0];
-            int plus = cur + 1;
-            int minus = cur - 1;
-            int multi = cur * 2;
-            if (plus < time.length && time[plus] > time[cur] + 1) {
-                time[plus] = time[cur] + 1;
-                pq.add(new int[]{plus, time[plus]});
-            }
-            if (minus >= 0 && minus < time.length && time[minus] > time[cur] + 1) {
-                time[minus] = time[cur] + 1;
-                pq.add(new int[]{minus, time[minus]});
-            }
-            if (multi < time.length && time[multi] > time[cur]) {
-                time[multi] = time[cur];
-                pq.add(new int[]{multi, time[multi]});
+            int cur = pq.poll()[0];
+            for (int i : new int[]{cur + 1, cur - 1, cur * 2}) {
+                if (i < time.length) {
+                    if (i < 0) {
+                        continue;
+                    }
+                    if (i == cur * 2 && time[i] > time[cur]) {
+                        time[i] = time[cur];
+                        pq.add(new int[]{i, time[i]});
+                    } else if (time[i] > time[cur] + 1) {
+                        time[i] = time[cur] + 1;
+                        pq.add(new int[]{i, time[i]});
+                    }
+                }
             }
         }
     }
