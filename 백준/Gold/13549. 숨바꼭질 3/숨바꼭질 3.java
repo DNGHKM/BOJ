@@ -21,20 +21,13 @@ public class Main {
         for (int i = 0; i < time.length; i++) {
             if (i != n) time[i] = INF;
         }
-        int num = n;
-        while (n != 0 && num < time.length) {
-            time[num] = 0;
-            num *= 2;
-        }
         dijk();
         System.out.println(time[k]);
     }
 
     private static void dijk() {
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
-        for (int i = 0; i < time.length; i++) {
-            if(time[i]==0) pq.add(new int[]{i, 0});
-        }
+        pq.add(new int[]{n, 0});
         while (!pq.isEmpty()) {
             int[] poll = pq.poll();
             int cur = poll[0];
