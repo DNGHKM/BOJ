@@ -7,6 +7,7 @@ public class Main {
     static int n, m;
     static int[][] arr, curArr;
     static ArrayList<int[]> safe, virus;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -14,9 +15,9 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
         arr = new int[n][m];
         curArr = new int[n][m];
-        int ans = 0;
         virus = new ArrayList<>();
         safe = new ArrayList<>();
+        int all = n * m-3;
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < m; j++) {
@@ -26,35 +27,29 @@ public class Main {
                     virus.add(new int[]{i, j});
                 } else if (input == 0) {
                     safe.add(new int[]{i, j});
+                } else {
+                    all--;
                 }
             }
         }
+        int minVirus = n * m;
         for (int i = 0; i < safe.size() - 2; i++) {
             for (int j = i + 1; j < safe.size() - 1; j++) {
                 for (int k = j + 1; k < safe.size(); k++) {
                     copyArr();
                     makeBlock(i, j, k);
+                    int countVirus = 0;
                     for (int[] start : virus) {
-                        bfs(start);
+                        countVirus += bfs(start);
                     }
-                    ans = Math.max(ans, countSafe());
+                    minVirus = Math.min(minVirus, countVirus);
                 }
             }
         }
-        System.out.println(ans);
+        System.out.println(all-minVirus);
     }
-
-    private static int countSafe() {
-        int count = 0;
-        for (int i = 0; i < curArr.length; i++) {
-            for (int j = 0; j < curArr[i].length; j++) {
-                if (curArr[i][j] == 0) count++;
-            }
-        }
-        return count;
-    }
-
-    private static void bfs(int[] start) {
+    private static int bfs(int[] start) {
+        int virus = 1;
         Queue<int[]> q = new LinkedList<>();
         q.add(start);
         while (!q.isEmpty()) {
@@ -65,9 +60,11 @@ public class Main {
                 if (rangeCheck(nextY, nextX) && curArr[nextY][nextX] == 0) {
                     q.add(new int[]{nextY, nextX});
                     curArr[nextY][nextX] = 2;
+                    virus++;
                 }
             }
         }
+        return virus;
     }
 
     private static boolean rangeCheck(int nextY, int nextX) {
