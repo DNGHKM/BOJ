@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -9,47 +8,50 @@ public class Main {
         for (int i = 0; i < t; i++) {
             String todo = br.readLine();
             int len = Integer.parseInt(br.readLine());
-            ArrayList<Integer> list = new ArrayList<>();
+            int[] arr = new int[len];
             String input = br.readLine();
             input = input.replaceAll("\\[", "");
             input = input.replaceAll("]", "");
             if (!input.isEmpty()) {
                 String[] split = input.split(",");
                 for (int j = 0; j < split.length; j++) {
-                    list.add(Integer.parseInt(split[j]));
+                    arr[j] = Integer.parseInt(split[j]);
                 }
             }
             boolean left = true;
+            int leftIdx = 0;
+            int rightIdx = arr.length - 1;
+            int arrayLen = rightIdx-leftIdx+1;
             for (int j = 0; j < todo.length(); j++) {
                 char doing = todo.charAt(j);
                 if (doing == 'R') {
                     left = !left;
                 } else {
-                    if (list.isEmpty()) {
+                    if (arrayLen<=0) {
                         bw.write("error\n");
                         break;
                     }
                     if (!left) {
-                        list.remove(list.size() - 1);
+                        rightIdx--;
                     } else {
-                        list.remove(0);
+                        leftIdx++;
                     }
+                    arrayLen--;
                 }
                 if (j == todo.length() - 1) {
                     bw.write("[");
                     if (!left) {
-                        for (int k = list.size() - 1; k >= 0; k--) {
-                            bw.write(list.get(k) + "");
-                            if (k != 0) bw.write(",");
+                        for (int k = rightIdx; k >= leftIdx; k--) {
+                            bw.write(arr[k] + "");
+                            if (k != leftIdx) bw.write(",");
                         }
-                    }else{
-                        for (int k = 0; k < list.size(); k++) {
-                            bw.write(list.get(k) + "");
-                            if (k != list.size()-1) bw.write(",");
+                    } else {
+                        for (int k = leftIdx; k < rightIdx+1; k++) {
+                            bw.write(arr[k] + "");
+                            if (k != rightIdx) bw.write(",");
                         }
                     }
                     bw.write("]" + "\n");
-
                 }
             }
         }
