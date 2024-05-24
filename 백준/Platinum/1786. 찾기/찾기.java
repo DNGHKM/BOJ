@@ -11,7 +11,7 @@ public class Main {
         inputLen = input.length();
         int[] table = makeArray(input);
         int matchCount = 0;
-        ArrayList<Integer> matchIndexList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
         int j = 0;
         for (int i = 0; i < sentence.length(); i++) {
             while (j > 0 && sentence.charAt(i) != input.charAt(j)) {
@@ -19,7 +19,7 @@ public class Main {
             }
             if(sentence.charAt(i) == input.charAt(j)){
                 if(j==inputLen-1){
-                    matchIndexList.add(i - inputLen + 2);
+                    sb.append((i - inputLen + 2)).append(" ");
                     matchCount++;
                     j = table[j];
                 }else{
@@ -28,9 +28,7 @@ public class Main {
             }
         }
         System.out.println(matchCount);
-        for (Integer integer : matchIndexList) {
-            System.out.print(integer + " ");
-        }
+        System.out.println(sb);
     }
 
     private static int[] makeArray(String input) {
