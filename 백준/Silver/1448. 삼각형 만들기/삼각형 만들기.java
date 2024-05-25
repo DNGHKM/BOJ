@@ -13,7 +13,8 @@ public class Main {
         int ans = -1;
         for (int i = arr.length-1; i >=2 ; i--) {
             if (arr[i] < arr[i - 1] + arr[i - 2]) {
-                ans = Math.max(ans, arr[i]+arr[i - 1] + arr[i - 2]);
+                ans = Math.max(ans, arr[i] + arr[i - 1] + arr[i - 2]);
+                break;
             }
         }
         System.out.println(ans);
