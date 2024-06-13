@@ -13,15 +13,15 @@ public class Main {
                 break;
             }
         }
-        int ans = 3 - idx + num;
-        if (ans % 3 == 0 && ans % 5 == 0) {
-            System.out.println("FizzBuzz");
-        }else if (ans % 3 == 0) {
-            System.out.println("Fizz");
-        }else if (ans % 5 == 0) {
-            System.out.println("Buzz");
-        }else{
-            System.out.println(ans);
+        num = 3 - idx + num;
+        String ans = String.valueOf(num);
+        if (num % 3 == 0 && num % 5 == 0) {
+            ans = "FizzBuzz";
+        } else if (num % 3 == 0) {
+            ans = "Fizz";
+        } else if (num % 5 == 0) {
+            ans = "Buzz";
         }
+        System.out.println(ans);
     }
 }
