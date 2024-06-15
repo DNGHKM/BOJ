@@ -6,22 +6,33 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
         String s = sc.next();
-        StringBuilder sb = new StringBuilder("I");
-        for (int i = 0; i < n; i++) {
-            sb.append("OI");
-        }
-        int count = 0;
-        int size = 1 + 2 * n;
-        for (int i = 0; i <= s.length() - size; i++) {
-            boolean flag = true;
-            for (int j = 0; j < size; j++) {
-                if (s.charAt(i+j) != sb.charAt(j)) {
-                    flag = false;
-                    break;
+        Stack<Character> stack = new Stack<>();
+        int ans = 0;
+        int len = n * 2 + 1;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (stack.isEmpty() && c == 'I') {
+                stack.push(c);
+                continue;
+            }
+            if (!stack.isEmpty()) {
+                if ((stack.peek() == 'O' && c == 'I') || (stack.peek() == 'I' && c == 'O')) {
+                    stack.push(c);
+                } else {
+                    if (stack.peek() == 'O') stack.pop();
+                    if (stack.size() >= len) {
+                        int count = (stack.size() - len) / 2 + 1;
+                        if (count > 0) ans += count;
+                    }
+                    stack.clear();
+                    if (c == 'I') stack.push(c);
                 }
             }
-            if(flag) count++;
         }
-        System.out.println(count);
+        if (stack.size() >= len) {
+            int count = (stack.size() - len) / 2 + 1;
+            if (count > 0) ans += count;
+        }
+        System.out.println(ans);
     }
 }
