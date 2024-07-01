@@ -3,9 +3,9 @@ import java.util.*;
 
 public class Main {
     static int n;
-    static int[][] arr;
     static int[] dy = {0, -1, 0, 1};
     static int[] dx = {1, 0, -1, 0};
+    static int[][] arr;
     static Queue<int[]> q;
     static ArrayList<int[]> tmp;
 
@@ -16,7 +16,7 @@ public class Main {
         arr = new int[n][n];
         q = new LinkedList<>();
         tmp = new ArrayList<>();
-        int k = Integer.parseInt(st.nextToken()); //바이러스갯수
+        int k = Integer.parseInt(st.nextToken());
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -33,12 +33,12 @@ public class Main {
         for (int i = 0; i < s; i++) {
             fillArr();
             q.addAll(tmp);
-            tmp = new ArrayList<>();
+            tmp.clear();
         }
-        System.out.println(arr[x - 1][y - 1]);
+        System.out.print(arr[x - 1][y - 1]);
     }
 
-    private static void fillArr() {
+    static void fillArr() {
         while (!q.isEmpty()) {
             int[] ints = q.poll();
             for (int i = 0; i < 4; i++) {
@@ -52,12 +52,11 @@ public class Main {
         }
     }
 
-    private static boolean rangeCheck(int ny, int nx) {
+    static boolean rangeCheck(int ny, int nx) {
         return 0 <= ny && ny < n && 0 <= nx && nx < n;
     }
 
-
-    private static void findVirus(int num) {
+    static void findVirus(int num) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (arr[i][j] == num) {
