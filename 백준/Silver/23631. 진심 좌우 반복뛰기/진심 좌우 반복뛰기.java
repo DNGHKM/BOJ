@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -11,30 +10,32 @@ public class Main {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken()); //총 거리
             int k = Integer.parseInt(st.nextToken()); //첫 거리
-            if (n == 1) {
-                bw.write("0 R\n");
-                continue;
-            }
-            int num = 0;
-            while (true) {
-                num++;
-                if (distSum(num, k) > n - 1) {
-                    num--;
+            int left = 0;
+            int right = 10000;
+            while (left <= right) {
+                int mid = left + (right - left) / 2;
+                long num = distSum(mid, k);
+                if (num < n - 1) {
+                    left = mid + 1;
+                } else if (num > n - 1) {
+                    right = mid - 1;
+                } else {
+                    right = mid;
                     break;
                 }
             }
-            int pos = (num + 1) / 2 * k;
-            if (num % 2 == 0) {
+            int pos = (right + 1) / 2 * k;
+            if (right % 2 == 0) {
                 pos = -pos;
             }
-            int toGo = (n - 1) - distSum(num, k);
+            int toGo = (int) ((n - 1) - distSum(right, k));
             if (pos <= 0) {
                 pos += toGo;
             } else {
                 pos -= toGo;
             }
             bw.write(pos+"");
-            if (num % 2 == 0) {
+            if (right % 2 == 0) {
                 bw.write(" R\n");
             } else {
                 bw.write(" L\n");
@@ -43,7 +44,7 @@ public class Main {
         bw.flush();
     }
 
-    private static int distSum(int times, int k) {
-        return times * k * (times + 1) / 2;
+    private static long distSum(int times, int k) {
+        return (long) times * k * (times + 1) / 2;
     }
 }
