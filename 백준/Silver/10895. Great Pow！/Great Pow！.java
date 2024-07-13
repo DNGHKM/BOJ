@@ -1,5 +1,3 @@
-import java.io.*;
-import java.math.BigInteger;
 import java.util.*;
 
 public class Main {
@@ -7,7 +5,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
         int pow = sc.nextInt();
-        int ans = 0;
+        int ans;
         if (num % 2 == 0) {
             if (pow == 0) {
                 ans = num;
@@ -17,6 +15,6 @@ public class Main {
         } else {
             ans = num;
         }
-        System.out.println(ans);
+        System.out.print(ans);
     }
 }
