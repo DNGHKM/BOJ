@@ -15,13 +15,17 @@ public class Main {
                 prime[j] = false;
             }
         }
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < prime.length; i++) {
+            if(prime[i]) list.add(i);
+        }
         int ans = 0;
         for (int i = n; i <= m; i++) {
             int count = 0;
             int num = i;
             while (num > 1) {
-                for (int j = 2; j <= num; j++) {
-                    if (prime[j] && num % j == 0) {
+                for (Integer j : list) {
+                    if (num % j == 0) {
                         num /= j;
                         count++;
                         break;
