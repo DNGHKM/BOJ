@@ -20,7 +20,7 @@ public class Main {
             int count = 0;
             int num = i;
             while (num > 1) {
-                for (int j = 2; j < prime.length; j++) {
+                for (int j = 2; j <= num; j++) {
                     if (prime[j] && num % j == 0) {
                         num /= j;
                         count++;
