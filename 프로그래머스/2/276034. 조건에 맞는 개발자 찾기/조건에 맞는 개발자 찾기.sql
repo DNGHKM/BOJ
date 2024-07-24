@@ -1,0 +1,18 @@
+SELECT 
+    ID,
+    EMAIL,
+    FIRST_NAME,
+    LAST_NAME
+FROM DEVELOPERS as d
+WHERE d.SKILL_CODE & (
+    SELECT s.CODE
+    FROM SKILLCODES as s
+    WHERE s.NAME = 'Python'
+) <>0 
+or 
+d.SKILL_CODE & (
+    SELECT s.CODE
+    FROM SKILLCODES as s
+    WHERE s.NAME = 'C#'
+) <>0 
+ORDER BY ID ASC;
