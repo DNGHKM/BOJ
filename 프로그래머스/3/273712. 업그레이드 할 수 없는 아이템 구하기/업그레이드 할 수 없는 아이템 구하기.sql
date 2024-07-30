@@ -1,0 +1,13 @@
+SELECT 
+    a.ITEM_ID,
+    a.ITEM_NAME,
+    a.RARITY
+FROM ITEM_INFO as a
+JOIN ITEM_TREE as b
+ON a.ITEM_ID = b.ITEM_ID
+WHERE NOT exists(
+    SELECT *
+    FROM ITEM_TREE
+    WHERE PARENT_ITEM_ID = a.ITEM_ID
+)
+order by a.ITEM_ID desc;
