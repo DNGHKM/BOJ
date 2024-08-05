@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -11,8 +7,8 @@ public class Main {
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         Queue<Integer> q = new LinkedList<>();
-        boolean[] cur = new boolean[7];
-        cur[0] = true;
+        boolean[] visited = new boolean[7];
+        visited[0] = true;
         for (int i = 0; i < n; i++) {
             int num = Integer.parseInt(st.nextToken()) % 7;
             if (num == 4) {
@@ -25,17 +21,15 @@ public class Main {
         }
         while (!q.isEmpty()) {
             int poll = q.poll();
-            boolean[] newCur = new boolean[7];
+            boolean[] newVisited = new boolean[7];
+            System.arraycopy(visited, 0, newVisited, 0, 7);
             for (int i = 0; i < 7; i++) {
-                newCur[i] = cur[i];
-            }
-            for (int i = 0; i < 7; i++) {
-                if (newCur[i]) {
-                    cur[(i + poll) % 7] = true;
+                if (newVisited[i]) {
+                    visited[(i + poll) % 7] = true;
                 }
             }
-            cur[poll] = true;
-            if (cur[4]) {
+            visited[poll] = true;
+            if (visited[4]) {
                 System.out.println("YES");
                 return;
             }
