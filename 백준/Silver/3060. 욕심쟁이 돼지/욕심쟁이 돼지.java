@@ -8,18 +8,17 @@ public class Main {
         int t = Integer.parseInt(br.readLine());
         for (int i = 0; i < t; i++) {
             int n = Integer.parseInt(br.readLine());
-            int[] arr = new int[6];
             int ans = 1;
             int sum = 0;
             StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < arr.length; j++) {
+            for (int j = 0; j < 6; j++) {
                 sum += Integer.parseInt(st.nextToken());
             }
             while (n >= sum) {
                 sum *= 4;
                 ans++;
             }
-            bw.write(ans+"\n");
+            bw.write(ans + "\n");
         }
         bw.flush();
     }
