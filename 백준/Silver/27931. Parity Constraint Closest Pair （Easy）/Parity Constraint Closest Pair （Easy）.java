@@ -1,5 +1,8 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -13,21 +16,32 @@ public class Main {
         Arrays.sort(arr);
         int minEven = Integer.MAX_VALUE;
         int minOdd = Integer.MAX_VALUE;
+        int oddIdx = -1;
+        int evenIdx = -1;
         for (int i = 0; i < n; i++) {
-            boolean findEven = false;
-            boolean findOdd = false;
-            for (int j = i + 1; j < n; j++) {
-                int sub = Math.abs(arr[j] - arr[i]);
-                if (sub % 2 == 0) {
-                    minEven = Math.min(minEven, sub);
-                    findEven = true;
+            int cur = arr[i];
+            boolean isEven = cur % 2 == 0;
+            if (oddIdx != -1) {
+                int dist = Math.abs(cur - arr[oddIdx]);
+                if (isEven) {
+                    minOdd = Math.min(minOdd, dist);
                 } else {
-                    minOdd = Math.min(minOdd, sub);
-                    findOdd = true;
+                    minEven = Math.min(minEven, dist);
                 }
-                if (findOdd && findEven) {
-                    break;
+            }
+
+            if (evenIdx != -1) {
+                int dist = Math.abs(cur - arr[evenIdx]);
+                if (isEven) {
+                    minEven = Math.min(minEven, dist);
+                } else {
+                    minOdd = Math.min(minOdd, dist);
                 }
+            }
+            if (cur % 2 == 0) {
+                evenIdx = i;
+            } else {
+                oddIdx = i;
             }
         }
         if (minEven == Integer.MAX_VALUE) {
