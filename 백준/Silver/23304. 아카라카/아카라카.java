@@ -19,11 +19,12 @@ public class Main {
             return true;
         }
         if (isSame(s)) {
-            flag = pal(s.substring(0, s.length() / 2)) && pal(s.substring((s.length() + 1) / 2));
+            pal(s.substring(0, s.length() / 2));
+            pal(s.substring((s.length() + 1) / 2));
         } else {
             flag = false;
         }
-        return flag;
+        return true;
     }
 
     private static boolean isSame(String s) {
@@ -33,7 +34,7 @@ public class Main {
             if (s.charAt(leftIdx) == s.charAt(rightIdx)) {
                 leftIdx++;
                 rightIdx--;
-            } else {
+            }else{
                 return false;
             }
         }
