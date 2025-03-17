@@ -1,9 +1,10 @@
 import java.io.*;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         int[] arr = new int[n];
@@ -15,7 +16,10 @@ public class Main {
                 arr[i] = i == n - 1 ? 1 : arr[i] + 1;
             }
         }
-        System.out.println(cnt);
-        Arrays.stream(arr).forEach(i -> System.out.print(i + " "));
+        bw.write(cnt + "\n");
+        for (int i : arr) {
+            bw.write(i + " ");
+        }
+        bw.flush();
     }
 }
