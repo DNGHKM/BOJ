@@ -1,8 +1,12 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     static Set<Integer> set = new HashSet<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
@@ -16,22 +20,20 @@ public class Main {
             int div = 1;
             while (true) {
                 for (int num : arr) {
-                    if(set.contains(num % div)){
+                    if (set.contains(num % div)) {
+                        div++;
                         set.clear();
                         break;
                     }
                     set.add(num % div);
                 }
-
                 if (set.size() == g) {
                     set.clear();
                     break;
                 }
-                set.clear();
-                div++;
             }
             sb.append(div + "\n");
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 }
