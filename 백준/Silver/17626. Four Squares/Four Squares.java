@@ -4,28 +4,22 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
+
         List<Integer> squareList = new ArrayList<>();
+        for (int i = 1; i * i <= n; i++) {
+            squareList.add(i * i);
+        }
+        
         int[] dp = new int[n + 1];
-        Arrays.fill(dp, 5);
-        dp[1] = 1;
-        for (int i = 1; i < dp.length; i++) {
-            if (isSquareNumber(i)) {
-                squareList.add(i);
-                dp[i] = 1;
-                continue;
-            }
-            for (Integer sq : squareList) {
-                int sum = dp[sq] + dp[i - sq];
-                if (sum < dp[i]) {
-                    dp[i] = sum;
-                }
+        Arrays.fill(dp, n + 1);
+        dp[0] = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            for (int sq : squareList) {
+                if (sq > i) break;
+                dp[i] = Math.min(dp[i], dp[i - sq] + 1);
             }
         }
         System.out.println(dp[n]);
-    }
-
-    private static boolean isSquareNumber(int i) {
-        int sqrt = (int) Math.sqrt(i);
-        return sqrt * sqrt == i;
     }
 }
