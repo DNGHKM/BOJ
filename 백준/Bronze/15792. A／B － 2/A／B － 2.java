@@ -13,10 +13,10 @@ public class Main {
         }
         sb.append(a / b);
         sb.append(".");
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 2000; i++) {
             a = (a % b) * 10;
             sb.append(a / b);
-            if ((a * 10) % b == 0) {
+            if (a % b == 0) {
                 break;
             }
         }
